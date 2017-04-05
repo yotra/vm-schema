@@ -31,6 +31,15 @@ module.exports = {
       return (typeof value === 'string' && value.length <= 2000);
     }
   },
+  // http://some-img.jpeg|alt=Welcome|width=200|height=100
+  Image: {
+    isValid: function(value) {
+      const parts = value.split('|');
+      const srcUrl = parts[0];
+      // TODO: check other parts
+      return typeof value === 'string' && srcUrl && srcUrl.length > 0;
+    }
+  },
   Number: {
     isValid: function(value) { return isNumber(value); }
   },
