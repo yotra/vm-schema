@@ -2,7 +2,7 @@ const typeCountry = require('./types').Country;
 
 // место действия полиса: страна, группа стран
 module.exports = {
-  id: {
+  identifier: {
     type: 'Country',
     label: 'ИД'
   },
@@ -10,9 +10,9 @@ module.exports = {
   name: {
     type: 'Text',
     label: 'Страна',
-    computed: ['id', function(id) {
+    computed: ['identifier', function(identifier) {
       return typeCountry.allowed.filter(function(c) {
-        return c.id === id;
+        return c.id === identifier;
       })[0].name;
     }]
   },
@@ -34,17 +34,17 @@ module.exports = {
   isDateVisaRequired: {
     type: 'Boolean',
     label: 'Требуется ли указание даты получения визы',
-    computed: ['id', function(id) {
-      return id === 'estonia' || id === 'finland';
+    computed: ['identifier', function(identifier) {
+      return identifier === 'estonia' || identifier === 'finland';
     }]
   },
 
   isShengen: {
     type: 'Boolean',
     label: 'Входит ли страна в Шенген',
-    computed: ['id', function(id) {
+    computed: ['identifier', function(identifier) {
       // TODO
-      return id === 'italy' || id === 'spain';
+      return identifier === 'italy' || identifier === 'spain';
     }]
   }
 };

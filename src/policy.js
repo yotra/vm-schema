@@ -15,7 +15,7 @@ extend(insurerSchema, personSchema, {});
 
 // http://schema.org/FinancialService
 module.exports = {
-  id: { type: 'Integer', label: 'ID' },
+  identifier: { type: 'Integer', label: 'ID' },
 
   name: {
     type: 'Text',
@@ -79,8 +79,8 @@ module.exports = {
   insuredPlacesWarning: {
     type: 'Text',
     label: 'Валидация стран',
-    computed: ['id', 'insuredPlaces', function(id, insuredPlaces) {
-      if (id === null) { return null; }
+    computed: ['identifier', 'insuredPlaces', function(identifier, insuredPlaces) {
+      if (identifier === null) { return null; }
 
       if (insuredPlaces.length < 1) {
         return 'Выберите хотя бы одну страну';
@@ -93,8 +93,8 @@ module.exports = {
   insuredEventWarning: {
     type: 'Text',
     label: 'Валидация дат поездки',
-    computed: ['id', 'insuredEvent', function(id, insuredEvent) {
-      if (id === null ||
+    computed: ['identifier', 'insuredEvent', function(identifier, insuredEvent) {
+      if (identifier === null ||
           insuredEvent === null) {
         return null;
       }
@@ -110,8 +110,8 @@ module.exports = {
   insurantsWarning: {
     type: 'Text',
     label: 'Валидация застрахованных лиц',
-    computed: ['id', 'insurants', function(id, insurants) {
-      if (id === null) { return null; }
+    computed: ['identifier', 'insurants', function(identifier, insurants) {
+      if (identifier === null) { return null; }
 
       // all insurants must be filled
       // at least one insurant must be
@@ -134,8 +134,8 @@ module.exports = {
   calculableWarning: {
     type: 'Text',
     label: 'необходимо заполнить',
-    computed: ['id', 'insuredPlacesWarning', 'insurantsWarning', function (id, insuredPlacesWarning, insurantsWarning) {
-      if (id === null) { return null; }
+    computed: ['identifier', 'insuredPlacesWarning', 'insurantsWarning', function (identifier, insuredPlacesWarning, insurantsWarning) {
+      if (identifier === null) { return null; }
       if (insuredPlacesWarning) { return insuredPlacesWarning; }
 
       if (insurantsWarning) { return insurantsWarning; }
@@ -149,12 +149,12 @@ module.exports = {
     type: 'Boolean',
     label: 'Возможен ли расчёт?',
     computed: [
-      'id',
+      'identifier',
       'insuredPlacesWarning',
       'insuredEventWarning',
       'insurantsWarning',
-      function(id, w1, w2, w3) {
-        if (id === null ||
+      function(identifier, w1, w2, w3) {
+        if (identifier === null ||
             w1 === null ||
             w2 === null ||
             w3 === null) {

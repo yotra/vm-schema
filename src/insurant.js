@@ -4,7 +4,7 @@ var person = require('./person');
 var insurant = {};
 extend(insurant, person, {
   // override person.id (Integer)
-  id: {
+  identifier: {
     type: 'Decade',
     label: 'ИД застрахованного'
   },
@@ -12,8 +12,8 @@ extend(insurant, person, {
   orderNumber: {
     type: 'Text',
     label: 'Застрахованное лицо №',
-    computed: ['id', function(id) {
-      return id + ''; // or id + 1 (for 0-based ids)
+    computed: ['identifier', function(identifier) {
+      return identifier + ''; // or id + 1 (for 0-based ids)
     }]
   },
 

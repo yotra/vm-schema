@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  id: {
+  identifier: {
     type: 'Integer',
     label: 'ИД'
   },

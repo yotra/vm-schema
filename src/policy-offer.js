@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  id: {
+  identifier: {
     type: 'Integer',
     label: 'Идентификатор продукта'
   },
@@ -29,9 +29,9 @@ module.exports = {
   infoUrl: {
     type: 'URL',
     label: 'Адрес продукта',
-    computed: ['id', function(id) {
-      if (id === null) { return null; }
-      return './product/' + id;
+    computed: ['identifier', function(identifier) {
+      if (identifier === null) { return null; }
+      return './product/' + identifier;
     }]
   }
 };
