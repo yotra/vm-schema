@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  identifier: {
-    type: 'Integer',
+  url: {
+    type: 'URLID',
     label: 'ИД'
   },
 

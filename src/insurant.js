@@ -4,15 +4,15 @@ var person = require('./person');
 var insurant = {};
 extend(insurant, person, {
   // override person.id (Integer)
-  identifier: {
-    type: 'Decade',
+  url: {
+    type: 'URLID',
     label: 'ИД застрахованного'
   },
 
   orderNumber: {
     type: 'Text',
     label: 'Застрахованное лицо №',
-    computed: ['identifier', function(identifier) {
+    computed: ['url', function(identifier) {
       return identifier + ''; // or id + 1 (for 0-based ids)
     }]
   },

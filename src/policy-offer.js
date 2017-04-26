@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  identifier: {
-    type: 'Integer',
+  url: {
+    type: 'URLID',
     label: 'Идентификатор продукта'
   },
   companyId: {
@@ -29,7 +29,7 @@ module.exports = {
   infoUrl: {
     type: 'URL',
     label: 'Адрес продукта',
-    computed: ['identifier', function(identifier) {
+    computed: ['url', function(identifier) {
       if (identifier === null) { return null; }
       return './product/' + identifier;
     }]

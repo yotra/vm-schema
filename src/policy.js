@@ -15,7 +15,7 @@ extend(insurerSchema, personSchema, {});
 
 // http://schema.org/FinancialService
 module.exports = {
-  identifier: { type: 'Integer', label: 'ID' },
+  url: { type: 'URLID', label: 'ID' },
 
   name: {
     type: 'Text',
@@ -79,7 +79,7 @@ module.exports = {
   insuredPlacesWarning: {
     type: 'Text',
     label: 'Валидация стран',
-    computed: ['identifier', 'insuredPlaces', function(identifier, insuredPlaces) {
+    computed: ['url', 'insuredPlaces', function(identifier, insuredPlaces) {
       if (identifier === null) { return null; }
 
       if (insuredPlaces.length < 1) {
@@ -93,7 +93,7 @@ module.exports = {
   insuredEventWarning: {
     type: 'Text',
     label: 'Валидация дат поездки',
-    computed: ['identifier', 'insuredEvent', function(identifier, insuredEvent) {
+    computed: ['url', 'insuredEvent', function(identifier, insuredEvent) {
       if (identifier === null ||
           insuredEvent === null) {
         return null;
@@ -110,7 +110,7 @@ module.exports = {
   insurantsWarning: {
     type: 'Text',
     label: 'Валидация застрахованных лиц',
-    computed: ['identifier', 'insurants', function(identifier, insurants) {
+    computed: ['url', 'insurants', function(identifier, insurants) {
       if (identifier === null) { return null; }
 
       // all insurants must be filled
@@ -134,7 +134,7 @@ module.exports = {
   calculableWarning: {
     type: 'Text',
     label: 'необходимо заполнить',
-    computed: ['identifier', 'insuredPlacesWarning', 'insurantsWarning', function (identifier, insuredPlacesWarning, insurantsWarning) {
+    computed: ['url', 'insuredPlacesWarning', 'insurantsWarning', function (identifier, insuredPlacesWarning, insurantsWarning) {
       if (identifier === null) { return null; }
       if (insuredPlacesWarning) { return insuredPlacesWarning; }
 
@@ -149,7 +149,7 @@ module.exports = {
     type: 'Boolean',
     label: 'Возможен ли расчёт?',
     computed: [
-      'identifier',
+      'url',
       'insuredPlacesWarning',
       'insuredEventWarning',
       'insurantsWarning',
@@ -182,7 +182,9 @@ module.exports = {
   },
 
   offersEndpoint: {
-    type: 'URL',
+    // URL must exist always (Search Engine rule)
+    // type URL replaced by simple Text
+    type: 'Text',
     label: 'URL предложений',
     computed: [
       'isCalculable',

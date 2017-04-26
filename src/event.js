@@ -17,7 +17,7 @@ var isDateBetweenInclusive = function(date, min, max) {
 
 // событие, например тур, путешествие, прокат, полёт и т.п.
 module.exports = {
-  identifier: { type: 'Integer', label: 'ID' },
+  url: { type: 'URLID', label: 'ID' },
 
   durationMax: {
     type: 'Duration', // P1Y2M3D
