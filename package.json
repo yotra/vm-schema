@@ -14,6 +14,7 @@
     "moment": "^2.17.1"
   },
   "devDependencies": {
+    "chai": "3.x",
     "eslint": "3.x",
     "eslint-config-airbnb-base": "10.x",
     "eslint-plugin-import": "2.x"

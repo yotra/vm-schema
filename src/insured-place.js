@@ -1,4 +1,4 @@
-const typeCountry = require('./types').Country;
+const countryProvider = require('./helpers/country-provider');
 
 // место действия полиса: страна, группа стран
 module.exports = {
@@ -12,9 +12,7 @@ module.exports = {
     type: 'Text',
     label: 'Страна',
     computed: ['url', function(identifier) {
-      return typeCountry.allowed.filter(function(c) {
-        return c.id === identifier;
-      })[0].name;
+      return countryProvider.getNameById(identifier);
     }]
   },
 
